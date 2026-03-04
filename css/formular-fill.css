@@ -1,0 +1,403 @@
+/* Formular Fill - Main Styles */
+
+.wer-pop-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.wer-pdf-formular {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formular-fill-form {
+    width: 100%;
+}
+
+/* Input Rows */
+.wer-input-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.wer-input-group {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 10px;
+}
+
+.wer-input-group.tf-1 { flex: 1; }
+.wer-input-group.tf-2 { flex: 2; }
+.wer-input-group.tf-3 { flex: 3; }
+.wer-input-group.tf-4 { flex: 4; }
+
+/* Input Fields */
+.wer-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.wer-input:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.2);
+}
+
+.wer-input.error {
+    border-color: #dc3232;
+}
+
+.wer-input.valid {
+    border-color: #46b450;
+}
+
+/* Labels */
+.wer-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+}
+
+.wer-input-group .wer-i-msg {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #dc3232;
+    min-height: 16px;
+}
+
+/* Select Fields */
+.wer-input.wer-select2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.wer-input.wer-select2:focus {
+    outline: none;
+    border-color: #0073aa;
+}
+
+.wer-gray-empty option:first-child {
+    color: #999;
+}
+
+/* Checkboxes */
+.wer-input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.wer-input-group.mt2 {
+    margin-top: 10px;
+}
+
+/* Subtitle */
+.f230-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #0073aa;
+}
+
+/* Instructions */
+.f230-instructiuni {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.f230-semnatura-instructiuni {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* Checkbox Group */
+.f230-checkboxes {
+    margin-top: 10px;
+}
+
+.wer-bool-group {
+    margin: 15px 0;
+}
+
+.wer-bool-group label {
+    display: inline;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Signature Pad */
+.wer-sign {
+    position: relative;
+    background: #f9f9f9;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    margin: 15px 0;
+    min-height: 200px;
+}
+
+.wer-sign canvas {
+    width: 100% !important;
+    height: auto !important;
+    cursor: crosshair;
+    display: block;
+    border-radius: 2px;
+}
+
+.wer-sign-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.wer-signhere-title {
+    font-size: 14px;
+    color: #666;
+}
+
+.wer-sign-clear-but {
+    padding: 6px 12px;
+    background: #dc3232;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.wer-sign-clear-but:hover {
+    background: #c0392b;
+}
+
+/* Captcha */
+.f230-captcha-box {
+    margin: 20px 0;
+}
+
+.f230-captcha-input {
+    width: 200px;
+    max-width: 100%;
+}
+
+.wer-captcha-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.wer-captcha {
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.f230-captcha-refresh {
+    cursor: pointer;
+    padding: 8px;
+    font-size: 18px;
+    color: #666;
+}
+
+.f230-captcha-refresh:hover {
+    color: #0073aa;
+}
+
+/* Buttons */
+.tt-but {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+    border: none;
+}
+
+.tt-washy {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.tt-washy:hover {
+    background: #e0e0e0;
+}
+
+.tt-danger {
+    background: #dc3232;
+    color: #fff;
+}
+
+.tt-primary {
+    background: #0073aa;
+    color: #fff;
+}
+
+.wer-pdf-preview {
+    cursor: pointer;
+}
+
+.wer-pdf-preview:hover {
+    background: #e0e0e0;
+}
+
+.ml4 {
+    margin-left: 4px;
+}
+
+/* Submit Button */
+.wer-submit-row {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.wer-submit-btn {
+    padding: 14px 40px;
+    background: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.wer-submit-btn:hover {
+    background: #005177;
+}
+
+.wer-submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Status Messages */
+.wer-status {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    display: none;
+}
+
+.wer-status.success {
+    display: block;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.wer-status.error {
+    display: block;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.wer-status.loading {
+    display: block;
+    background: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+/* ONG Info Section */
+.tt-ctw {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.mb4 {
+    margin-bottom: 16px;
+}
+
+.mb2 {
+    margin-bottom: 8px;
+}
+
+.f230-ong-info {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.f230-ong-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+.f230-nume-ong {
+    font-size: 20px;
+    color: #0073aa;
+    margin: 10px 0;
+}
+
+.f230-descriere {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Utility Classes */
+.mt0 { margin-top: 0; }
+.mt2 { margin-top: 8px; }
+.pdl0 { padding-left: 0; }
+.ttc-primary { color: #0073aa; }
+.tt-bold-600 { font-weight: 600; }
+.tt-font-11 { font-size: 11px; }
+.tt-pointer { cursor: pointer; }
+.tt-l { text-align: left; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .wer-input-row {
+        flex-direction: column;
+    }
+    
+    .wer-input-group {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .wer-input-group.tf-2,
+    .wer-input-group.tf-3,
+    .wer-input-group.tf-4 {
+        width: 100%;
+    }
+    
+    .f230-captcha-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
