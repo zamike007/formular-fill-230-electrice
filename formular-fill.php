@@ -4,8 +4,8 @@
  * Plugin URI: https://example.com/formular-fill
  * Description: A WordPress plugin that generates ANAF Form 230 for 3.5% tax redirection. Use shortcode [formular_230] to display the form.
  * Version: 1.0.0
- * Author: Asociatia Grupul Verde
- * Author URI: https://grupulverde.ro
+ * Author: Your Name
+ * Author URI: https://example.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: formular-fill
@@ -76,7 +76,7 @@ function formular_fill_shortcode($atts) {
                 </div>
             </header>
 
-            <div id="info" class="inner cover text-center">
+            <div id="info" class="inner cover text-center d-none">
                 <h1 class="cover-heading">Înainte de toate...</h1>
                 <p id="pInfo1" class="lead">Această unealtă te ajută să îți <strong>generezi</strong> formularul 230 ANAF pentru a redirecționa 3,5% din impozitul pe venit către <span class="org-name-placeholder"><?php echo esc_html($atts['org_name']); ?></span>.</p>
                 <p class="lead">După ce îți completezi datele și te semnezi, poți genera și descărca formularul în format PDF pentru a-l printa sau trimite în format electronic.</p>
@@ -86,7 +86,7 @@ function formular_fill_shortcode($atts) {
                 </div>
             </div>
 
-            <form id="form" class="container text-center needs-validation d-none" novalidate>
+            <form id="form" class="container text-center needs-validation" novalidate>
                 <h3 class="mt-4 mb-4">Date de identificare a contribuabilului</h3>
                 <div class="row">
                     <div class="col">
@@ -230,12 +230,6 @@ function formular_fill_shortcode($atts) {
                     </div>
                 </div>
             </div>
-
-            <footer class="mastfoot mt-auto text-center">
-                <div class="inner">
-                    <p>Developed with ❤ by <a href="https://grupulverde.ro" target="_blank">Asociatia Grupul Verde - Transformăm comunități prin educație digitală, tehnologie și impact social</a>.</p>
-                </div>
-            </footer>
         </div>
     </div>
     <?php

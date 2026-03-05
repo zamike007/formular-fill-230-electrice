@@ -2,7 +2,7 @@
 
 Aplicație web pentru completarea și generarea Formularului 230 ANAF, utilizată pentru redirecționarea a 3,5% din impozitul pe venit către organizații non-profit, fără transmiterea sau stocarea datelor personale.
 
-Proiect dezvoltat de programatori voluntari ai Asociației Grupul Verde, din Adjud, județul Vrancea.
+Proiect dezvoltat de programatori voluntari.
 
 ---
 
@@ -93,10 +93,7 @@ Proiectul este deschis contribuțiilor din partea comunității, inclusiv îmbun
 
 ## Dezvoltat de
 
-Asociația Grupul Verde  
-Adjud, județul Vrancea, România  
-
-Aplicație realizată de programatori voluntari implicați în proiecte de educație digitală, tehnologie civică și incluziune socială.
+Aplicație realizată de programatori voluntari.
 
 ---
 
@@ -108,7 +105,4 @@ Acest proiect este distribuit sub licență MIT, permițând utilizarea, modific
 
 ## Contact
 
-Website: https://grupulverde.ro  
-Email: office@grupulverde.ro  
-
-Tehnologie pentru comunitate. Cod scris cu responsabilitate civică.
+Pentru întrebări despre acest proiect, vă rugăm să contactați administratorul site-ului.

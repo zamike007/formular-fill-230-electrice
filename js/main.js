@@ -8,6 +8,8 @@ window.onload = function () {
     _signaturePad = new SignaturePad(canvas, { penColor: "rgb(255, 255, 255)" });
     GetAndSetConfig();
     SetVisibility("mainDiv", true);
+    // Auto-start: show form directly, skip info page
+    Start();
     // Statistics disabled in WordPress - uncomment if needed
     // AddStatistic("Visits");
 };
