@@ -2,6 +2,10 @@ const { PDFDocument } = window.PDFLib;
 var _signaturePad;
 let _orgName, _orgCIF, _orgIBAN, _percent;
 let _pluginUrl;
+// Representative (Imputernicit) fields
+let _imputernicit_nume, _imputernicit_cui, _imputernicit_strada, _imputernicit_numar;
+let _imputernicit_ap, _imputernicit_judet, _imputernicit_localitate;
+let _imputernicit_telefon, _imputernicit_email;
 
 window.onload = function () {
     var canvas = document.getElementById("signature-pad");
@@ -23,6 +27,17 @@ function GetAndSetConfig() {
         _orgIBAN = formularFillConfig.orgIBAN;
         _percent = formularFillConfig.percent;
         
+        // Representative (Imputernicit) fields
+        _imputernicit_nume = formularFillConfig.imputernicit_nume || '';
+        _imputernicit_cui = formularFillConfig.imputernicit_cui || '';
+        _imputernicit_strada = formularFillConfig.imputernicit_strada || '';
+        _imputernicit_numar = formularFillConfig.imputernicit_numar || '';
+        _imputernicit_ap = formularFillConfig.imputernicit_ap || '';
+        _imputernicit_judet = formularFillConfig.imputernicit_judet || '';
+        _imputernicit_localitate = formularFillConfig.imputernicit_localitate || '';
+        _imputernicit_telefon = formularFillConfig.imputernicit_telefon || '';
+        _imputernicit_email = formularFillConfig.imputernicit_email || '';
+        
         document.title = `Formular 230 ANAF pentru ${_orgName}`;
         document.getElementById("infoTitle").innerHTML = `Formular 230 ANAF pentru ${_orgName}`;
         
@@ -34,21 +49,40 @@ function GetAndSetConfig() {
         }
     } else {
         // Fallback for testing - try to fetch config.json
+        console.log('Loading config.json...');
         fetch('config.json')
-            .then((response) => response.json())
+            .then((response) => {
+                console.log('Config response status:', response.status);
+                return response.json();
+            })
             .then(
                 function(jsonData) {
+                    console.log('Config loaded:', jsonData);
                     _orgName = jsonData.OrgName;
                     _orgCIF = jsonData.OrgCIF;
                     _orgIBAN = jsonData.OrgIBAN;
                     _percent = jsonData.Percent;
                     _pluginUrl = '';
+                    // Representative (Imputernicit) fields
+                    _imputernicit_nume = jsonData.imputernicit_nume || '';
+                    _imputernicit_cui = jsonData.imputernicit_cui || '';
+                    _imputernicit_strada = jsonData.imputernicit_strada || '';
+                    _imputernicit_numar = jsonData.imputernicit_numar || '';
+                    _imputernicit_ap = jsonData.imputernicit_ap || '';
+                    _imputernicit_judet = jsonData.imputernicit_judet || '';
+                    _imputernicit_localitate = jsonData.imputernicit_localitate || '';
+                    _imputernicit_telefon = jsonData.imputernicit_telefon || '';
+                    _imputernicit_email = jsonData.imputernicit_email || '';
+                    console.log('Imputernicit config loaded:', _imputernicit_nume, _imputernicit_cui);
                     document.title = `Formular 230 ANAF pentru ${_orgName}`;
                     document.getElementById("infoTitle").innerHTML = `Formular 230 ANAF pentru ${_orgName}`;
                     let pInfo1 = document.getElementById("pInfo1");
                     pInfo1.innerHTML = pInfo1.innerHTML.replace("{{OrgName}}", _orgName);
                 }
-            );
+            )
+            .catch((error) => {
+                console.error('Error loading config.json:', error);
+            });
     }
 }
 
@@ -123,6 +157,18 @@ async function Generate() {
         form.getTextField('target_name').setText(_orgName);
         form.getTextField('target_iban').setText(_orgIBAN);
         form.getTextField('a5').setText(_percent);
+        
+        // Representative (Imputernicit) fields
+        console.log('Setting imputernicit fields:', _imputernicit_nume, _imputernicit_cui);
+        if (_imputernicit_nume) form.getTextField('imputernicit_nume').setText(_imputernicit_nume);
+        if (_imputernicit_cui) form.getTextField('imputernicit_cui').setText(_imputernicit_cui);
+        if (_imputernicit_strada) form.getTextField('imputernicit_strada').setText(_imputernicit_strada);
+        if (_imputernicit_numar) form.getTextField('imputernicit_numar').setText(_imputernicit_numar);
+        if (_imputernicit_ap) form.getTextField('imputernicit_ap').setText(_imputernicit_ap);
+        if (_imputernicit_judet) form.getTextField('imputernicit_judet').setText(_imputernicit_judet);
+        if (_imputernicit_localitate) form.getTextField('imputernicit_localitate').setText(_imputernicit_localitate);
+        if (_imputernicit_telefon) form.getTextField('imputernicit_telefon').setText(_imputernicit_telefon);
+        if (_imputernicit_email) form.getTextField('imputernicit_email').setText(_imputernicit_email);
 
         form.flatten();
         const pages = pdfDoc.getPages();

@@ -1,6 +1,15 @@
 {
-    "OrgName": "Nume ONG:",
-    "OrgCIF": "CIF ONG",
+    "OrgName": "ASOCIATIA JUDETEANA DE MINIFOTBAL MURES",
+    "OrgCIF": "47336865",
     "OrgIBAN": "IBAN ONG",
-    "Percent": "3,5"
+    "Percent": "3,5",
+    "imputernicit_nume": "Flanja Calin",
+    "imputernicit_cui": "1740124060770",
+    "imputernicit_strada": "Transilvania",
+    "imputernicit_numar": "48",
+    "imputernicit_ap": "5",
+    "imputernicit_judet": "Mures",
+    "imputernicit_localitate": "Targu Mures",
+    "imputernicit_telefon": "0740567123",
+    "imputernicit_email": "calin.flanja@eo.ro"
 }

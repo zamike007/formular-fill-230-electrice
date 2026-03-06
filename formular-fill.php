@@ -49,6 +49,16 @@ function formular_fill_enqueue_assets() {
         'orgCIF'    => get_option('formular_fill_org_cif', ''),
         'orgIBAN'   => get_option('formular_fill_org_iban', ''),
         'percent'   => '3,5',
+        // Representative (Imputernicit) fields
+        'imputernicit_nume' => get_option('formular_fill_imputernicit_nume', ''),
+        'imputernicit_cui' => get_option('formular_fill_imputernicit_cui', ''),
+        'imputernicit_strada' => get_option('formular_fill_imputernicit_strada', ''),
+        'imputernicit_numar' => get_option('formular_fill_imputernicit_numar', ''),
+        'imputernicit_ap' => get_option('formular_fill_imputernicit_ap', ''),
+        'imputernicit_judet' => get_option('formular_fill_imputernicit_judet', ''),
+        'imputernicit_localitate' => get_option('formular_fill_imputernicit_localitate', ''),
+        'imputernicit_telefon' => get_option('formular_fill_imputernicit_telefon', ''),
+        'imputernicit_email' => get_option('formular_fill_imputernicit_email', ''),
     ));
 }
 add_action('wp_enqueue_scripts', 'formular_fill_enqueue_assets');
@@ -244,6 +254,16 @@ function formular_fill_settings_init() {
     register_setting('formular_fill', 'formular_fill_org_name');
     register_setting('formular_fill', 'formular_fill_org_cif');
     register_setting('formular_fill', 'formular_fill_org_iban');
+    // Representative (Imputernicit) fields
+    register_setting('formular_fill', 'formular_fill_imputernicit_nume');
+    register_setting('formular_fill', 'formular_fill_imputernicit_cui');
+    register_setting('formular_fill', 'formular_fill_imputernicit_strada');
+    register_setting('formular_fill', 'formular_fill_imputernicit_numar');
+    register_setting('formular_fill', 'formular_fill_imputernicit_ap');
+    register_setting('formular_fill', 'formular_fill_imputernicit_judet');
+    register_setting('formular_fill', 'formular_fill_imputernicit_localitate');
+    register_setting('formular_fill', 'formular_fill_imputernicit_telefon');
+    register_setting('formular_fill', 'formular_fill_imputernicit_email');
 }
 add_action('admin_init', 'formular_fill_settings_init');
 
@@ -282,6 +302,45 @@ function formular_fill_options_page() {
                 <tr valign="top">
                     <th scope="row">Organization IBAN</th>
                     <td><input type="text" name="formular_fill_org_iban" value="<?php echo esc_attr(get_option('formular_fill_org_iban', '')); ?>" class="regular-text" /></td>
+                </tr>
+            </table>
+            <h2>Representative (Împuternicit) Settings</h2>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">Representative Name</th>
+                    <td><input type="text" name="formular_fill_imputernicit_nume" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_nume', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative CIF/CNP</th>
+                    <td><input type="text" name="formular_fill_imputernicit_cui" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_cui', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative Street</th>
+                    <td><input type="text" name="formular_fill_imputernicit_strada" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_strada', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative Number</th>
+                    <td><input type="text" name="formular_fill_imputernicit_numar" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_numar', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative Apartment</th>
+                    <td><input type="text" name="formular_fill_imputernicit_ap" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_ap', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative County</th>
+                    <td><input type="text" name="formular_fill_imputernicit_judet" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_judet', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative City</th>
+                    <td><input type="text" name="formular_fill_imputernicit_localitate" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_localitate', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative Phone</th>
+                    <td><input type="text" name="formular_fill_imputernicit_telefon" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_telefon', '')); ?>" class="regular-text" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Representative Email</th>
+                    <td><input type="text" name="formular_fill_imputernicit_email" value="<?php echo esc_attr(get_option('formular_fill_imputernicit_email', '')); ?>" class="regular-text" /></td>
                 </tr>
             </table>
             <?php
