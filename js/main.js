@@ -6,83 +6,80 @@ let _pluginUrl;
 let _imputernicit_nume, _imputernicit_cui, _imputernicit_strada, _imputernicit_numar;
 let _imputernicit_ap, _imputernicit_judet, _imputernicit_localitate;
 let _imputernicit_telefon, _imputernicit_email;
+// Track if config is loaded
+let _configLoaded = false;
 
 window.onload = function () {
     var canvas = document.getElementById("signature-pad");
     _signaturePad = new SignaturePad(canvas, { penColor: "rgb(255, 255, 255)" });
-    GetAndSetConfig();
-    SetVisibility("mainDiv", true);
-    // Auto-start: show form directly, skip info page
-    Start();
+    GetAndSetConfig().then(() => {
+        SetVisibility("mainDiv", true);
+        // Auto-start: show form directly, skip info page
+        Start();
+    });
     // Statistics disabled in WordPress - uncomment if needed
     // AddStatistic("Visits");
 };
 
-function GetAndSetConfig() {
-    // Use config from WordPress localize_script
-    if (typeof formularFillConfig !== 'undefined') {
-        _pluginUrl = formularFillConfig.pluginUrl;
-        _orgName = formularFillConfig.orgName;
-        _orgCIF = formularFillConfig.orgCIF;
-        _orgIBAN = formularFillConfig.orgIBAN;
-        _percent = formularFillConfig.percent;
-        
+async function GetAndSetConfig() {
+    // Determine base URL for config and assets
+    let baseUrl = '';
+    
+    // If running in WordPress, use the plugin URL
+    if (typeof formularFillConfig !== 'undefined' && formularFillConfig.pluginUrl) {
+        baseUrl = formularFillConfig.pluginUrl;
+    }
+    
+    // Load config from config.json
+    const configUrl = baseUrl + 'config.json';
+    console.log('Loading config from:', configUrl);
+    
+    try {
+        const response = await fetch(configUrl);
+        console.log('Config response status:', response.status);
+        if (!response.ok) {
+            throw new Error('Failed to load config.json: ' + response.status);
+        }
+        const jsonData = await response.json();
+        console.log('Config loaded:', jsonData);
+        _orgName = jsonData.OrgName;
+        _orgCIF = jsonData.OrgCIF;
+        _orgIBAN = jsonData.OrgIBAN;
+        _percent = jsonData.Percent;
+        _pluginUrl = baseUrl;
         // Representative (Imputernicit) fields
-        _imputernicit_nume = formularFillConfig.imputernicit_nume || '';
-        _imputernicit_cui = formularFillConfig.imputernicit_cui || '';
-        _imputernicit_strada = formularFillConfig.imputernicit_strada || '';
-        _imputernicit_numar = formularFillConfig.imputernicit_numar || '';
-        _imputernicit_ap = formularFillConfig.imputernicit_ap || '';
-        _imputernicit_judet = formularFillConfig.imputernicit_judet || '';
-        _imputernicit_localitate = formularFillConfig.imputernicit_localitate || '';
-        _imputernicit_telefon = formularFillConfig.imputernicit_telefon || '';
-        _imputernicit_email = formularFillConfig.imputernicit_email || '';
-        
+        _imputernicit_nume = jsonData.imputernicit_nume || '';
+        _imputernicit_cui = jsonData.imputernicit_cui || '';
+        _imputernicit_strada = jsonData.imputernicit_strada || '';
+        _imputernicit_numar = jsonData.imputernicit_numar || '';
+        _imputernicit_ap = jsonData.imputernicit_ap || '';
+        _imputernicit_judet = jsonData.imputernicit_judet || '';
+        _imputernicit_localitate = jsonData.imputernicit_localitate || '';
+        _imputernicit_telefon = jsonData.imputernicit_telefon || '';
+        _imputernicit_email = jsonData.imputernicit_email || '';
+        console.log('Imputernicit config loaded:', _imputernicit_nume, _imputernicit_cui);
         document.title = `Formular 230 ANAF pentru ${_orgName}`;
         document.getElementById("infoTitle").innerHTML = `Formular 230 ANAF pentru ${_orgName}`;
-        
-        // Update the placeholder text for organization name
-        const pInfo1 = document.getElementById("pInfo1");
-        const orgNamePlaceholder = pInfo1.querySelector('.org-name-placeholder');
-        if (orgNamePlaceholder) {
-            orgNamePlaceholder.textContent = _orgName;
-        }
-    } else {
-        // Fallback for testing - try to fetch config.json
-        console.log('Loading config.json...');
-        fetch('config.json')
-            .then((response) => {
-                console.log('Config response status:', response.status);
-                return response.json();
-            })
-            .then(
-                function(jsonData) {
-                    console.log('Config loaded:', jsonData);
-                    _orgName = jsonData.OrgName;
-                    _orgCIF = jsonData.OrgCIF;
-                    _orgIBAN = jsonData.OrgIBAN;
-                    _percent = jsonData.Percent;
-                    _pluginUrl = '';
-                    // Representative (Imputernicit) fields
-                    _imputernicit_nume = jsonData.imputernicit_nume || '';
-                    _imputernicit_cui = jsonData.imputernicit_cui || '';
-                    _imputernicit_strada = jsonData.imputernicit_strada || '';
-                    _imputernicit_numar = jsonData.imputernicit_numar || '';
-                    _imputernicit_ap = jsonData.imputernicit_ap || '';
-                    _imputernicit_judet = jsonData.imputernicit_judet || '';
-                    _imputernicit_localitate = jsonData.imputernicit_localitate || '';
-                    _imputernicit_telefon = jsonData.imputernicit_telefon || '';
-                    _imputernicit_email = jsonData.imputernicit_email || '';
-                    console.log('Imputernicit config loaded:', _imputernicit_nume, _imputernicit_cui);
-                    document.title = `Formular 230 ANAF pentru ${_orgName}`;
-                    document.getElementById("infoTitle").innerHTML = `Formular 230 ANAF pentru ${_orgName}`;
-                    let pInfo1 = document.getElementById("pInfo1");
-                    pInfo1.innerHTML = pInfo1.innerHTML.replace("{{OrgName}}", _orgName);
-                }
-            )
-            .catch((error) => {
-                console.error('Error loading config.json:', error);
-            });
+        let pInfo1 = document.getElementById("pInfo1");
+        pInfo1.innerHTML = pInfo1.innerHTML.replace("{{OrgName}}", _orgName);
+        _configLoaded = true;
+    } catch (error) {
+        console.error('Error loading config.json:', error);
+        // Use defaults
+        _orgName = 'Nume ONG';
+        _orgCIF = '';
+        _orgIBAN = '';
+        _percent = '3,5';
+        _imputernicit_nume = '';
+        _imputernicit_cui = '';
+        _imputernicit_strada = '';
+        _imputernicit_numar = '';
+        _imputernicit_ap = '';
+        _imputernicit_judet = '';
+        _imputernicit_localitate = '';
+        _imputernicit_telefon = '';
+        _imputernicit_email = '';
+        _configLoaded = true;
     }
 }
 
@@ -109,6 +106,13 @@ function ShowModalMessage(msgId) {
 async function Generate() {
     try {
         console.log("Generate started...");
+        
+        // Wait for config to be loaded if not already
+        if (!_configLoaded) {
+            console.log("Waiting for config to load...");
+            await GetAndSetConfig();
+        }
+        
         if (_signaturePad.isEmpty()) {
             ShowModalMessage(3);
             return;
