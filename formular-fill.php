@@ -79,22 +79,12 @@ function formular_fill_shortcode($atts) {
     ob_start();
     ?>
     <div id="formular-fill-wrapper" data-bs-theme="dark">
-        <div id="mainDiv" class="cover-container d-flex h-100 p-3 mx-auto flex-column d-none">
+        <div id="mainDiv" class="cover-container d-flex h-100 p-3 mx-auto flex-column">
             <header class="masthead mb-auto text-center">
                 <div class="inner">
                     <h4 id="infoTitle" class="">Formular 230 ANAF</h3>
                 </div>
             </header>
-
-            <div id="info" class="inner cover text-center d-none">
-                <h1 class="cover-heading">Înainte de toate...</h1>
-                <p id="pInfo1" class="lead">Această unealtă te ajută să îți <strong>generezi</strong> formularul 230 ANAF pentru a redirecționa 3,5% din impozitul pe venit către <span class="org-name-placeholder"><?php echo esc_html($atts['org_name']); ?></span>.</p>
-                <p class="lead">După ce îți completezi datele și te semnezi, poți genera și descărca formularul în format PDF pentru a-l printa sau trimite în format electronic.</p>
-                <p class="lead">Toate datele pe care le introduci <strong>NU</strong> sunt salvate sau trimise nicăieri. Generarea documentului se face în timp real doar pe dispozitivul tău.</p>
-                <div class="lead mt-5">
-                    <button class="btn btn-lg btn-primary" onclick="Start()">Începe!</button>
-                </div>
-            </div>
 
             <form id="form" class="container text-center needs-validation" novalidate>
                 <h3 class="mt-4 mb-4">Date de identificare a contribuabilului</h3>

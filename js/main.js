@@ -11,11 +11,9 @@ let _configLoaded = false;
 
 window.onload = function () {
     var canvas = document.getElementById("signature-pad");
-    _signaturePad = new SignaturePad(canvas, { penColor: "rgb(255, 255, 255)" });
+    _signaturePad = new SignaturePad(canvas, { penColor: "rgb(0, 0, 0)" });
     GetAndSetConfig().then(() => {
         SetVisibility("mainDiv", true);
-        // Auto-start: show form directly, skip info page
-        Start();
     });
     // Statistics disabled in WordPress - uncomment if needed
     // AddStatistic("Visits");
@@ -60,8 +58,6 @@ async function GetAndSetConfig() {
         console.log('Imputernicit config loaded:', _imputernicit_nume, _imputernicit_cui);
         document.title = `Formular 230 ANAF pentru ${_orgName}`;
         document.getElementById("infoTitle").innerHTML = `Formular 230 ANAF pentru ${_orgName}`;
-        let pInfo1 = document.getElementById("pInfo1");
-        pInfo1.innerHTML = pInfo1.innerHTML.replace("{{OrgName}}", _orgName);
         _configLoaded = true;
     } catch (error) {
         console.error('Error loading config.json:', error);
@@ -189,7 +185,7 @@ async function Generate() {
             width: pngDims.width,
             height: pngDims.height,
         });
-        UpdateSignaturePadColor("rgb(255, 255, 255)");
+        // Keep signature pad color as black
 
         const pdfBytes = await pdfDoc.save();
         ShowModalMessage(1);
